@@ -16,7 +16,6 @@ class Insan:
         else:
             self.yetenekler.append(yetenekAdi)
 
-
 def main():
     insan = Insan()
 
