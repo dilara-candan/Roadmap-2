@@ -16,16 +16,10 @@ class Insan:
         else:
             self.yetenekler.append(yetenekAdi)
 
-def main():
-    insan = Insan()
+insan = Insan()
 
-    insan.yetenek_ekle('Araba Sürmek')
-    insan.yetenek_ekle('At Binmek')
+insan.yetenek_ekle('Araba Sürmek')
+# Veya
+insan.yetenek_ekle(['C++', 'JavaScript'])
 
-    # Veya
-
-    insan.yetenek_ekle(['C++', 'JavaScript'])
-
-    insan.kisi_bilgileri()
-
-main()
+insan.kisi_bilgileri()
