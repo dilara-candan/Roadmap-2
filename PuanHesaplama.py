@@ -4,49 +4,52 @@ class Ogrenci:
         self.ogrenciSoyadi = ogrenciSoyadi
         self.ogrenciSinif = ogrenciSinif
 
-class Soru:
+class Soru(Ogrenci):
+    def __init__(self, ogrenciAdi, ogrenciSoyadi, ogrenciSinif):
+        super().__init__(ogrenciAdi, ogrenciSoyadi, ogrenciSinif)
+
     def NetSayisi(self, dogruSayisi, yanlisSayisi):
+        if (dogruSayisi + yanlisSayisi > 50):
+            print("50 soru sınırırı geçtiniz.")
+            return
+
         return dogruSayisi - int(yanlisSayisi / 4)
 
     def Hesapla(self, netSayisi):
-        return netSayisi * 2
+        if (type(netSayisi) == int):
+            print(
+                '---------------------------------------------\n' +
+                'Sonuc:\n' +
+                'Ad:' + self.ogrenciAdi + '\n' +
+                'Soyad:' + self.ogrenciSoyadi + '\n' +
+                'Sınıf:' + self.ogrenciSinif + '\n' +
+                'Puan:' + str(netSayisi * 2)
+            )
 
-def main():
-    ogrenciBilgileri = {
-        'Ad': '',
-        'Soyad': '',
-        'Sinif': ''
-    }
+ogrenciBilgileri = {
+    'Ad': '',
+    'Soyad': '',
+    'Sinif': ''
+}
 
-    denemeBilgileri = {
-        'dogruSayisi': 0,
-        'yanlisSayisi': 0
-    }
+denemeBilgileri = {
+    'dogruSayisi': 0,
+    'yanlisSayisi': 0
+}
 
-    print('Ogrenci Bilgilerini Giriniz:')
+print('Ogrenci Bilgilerini Giriniz:')
 
-    for keyName in ogrenciBilgileri.keys():
-         ogrenciBilgileri[keyName] = input(keyName + ':')
+for keyName in ogrenciBilgileri.keys():
+    ogrenciBilgileri[keyName] = input(keyName + ':')
 
-    ogrenci = Ogrenci(ogrenciBilgileri['Ad'], ogrenciBilgileri['Soyad'], ogrenciBilgileri['Sinif'])
+ogrenci = Ogrenci(ogrenciBilgileri['Ad'], ogrenciBilgileri['Soyad'], ogrenciBilgileri['Sinif'])
 
-    print('Deneme Bilgilerini Giriniz:')
+print('Deneme Bilgilerini Giriniz:')
 
-    for keyName in denemeBilgileri.keys():
-         denemeBilgileri[keyName] = int(input(keyName + ':'))
+for keyName in denemeBilgileri.keys():
+    denemeBilgileri[keyName] = int(input(keyName + ':'))
 
-    soru = Soru()
+soru = Soru(ogrenci.ogrenciAdi, ogrenci.ogrenciSoyadi, ogrenci.ogrenciSinif)
+netSayisi = soru.NetSayisi(int(denemeBilgileri['dogruSayisi']), int(denemeBilgileri['yanlisSayisi']))
 
-    netSayisi = soru.NetSayisi(denemeBilgileri['dogruSayisi'], denemeBilgileri['yanlisSayisi'])
-    puan = soru.Hesapla(netSayisi)
-
-    print(
-        '---------------------------------------------\n' +
-        'Sonuc:\n' +
-        'Ad:' + ogrenci.ogrenciAdi + '\n' +
-        'Soyad:' + ogrenci.ogrenciSoyadi + '\n' +
-        'Sınıf:' + ogrenci.ogrenciSinif + '\n' +
-        'Puan:' + str(puan)
-    )
-
-main()
+soru.Hesapla(netSayisi)
